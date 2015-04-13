@@ -14,7 +14,7 @@ namespace RPG {
         : Object(str), xpos(x), ypos(y), symbol(c), movable(b)
         {}
         virtual void info() const;
-        virtual const unsigned& getXpos() const
+        virtual unsigned getXpos() const
         {
             return xpos;
         }
@@ -22,23 +22,12 @@ namespace RPG {
         {
             return ypos;
         }
-        virtual const char& getSym() const
+        virtual char getSym() const
         {
             return symbol;
         }
-        virtual const std::string& getName() const
-        {
-            return name;
-        }
-        virtual void setXpos(const unsigned& x)
-        {
-            xpos=x;
-        }
-        virtual void setYpos(const unsigned& y)
-        {
-            ypos=y;
-        }
-        virtual ~MapObject(){}
+        virtual ~MapObject()
+        {}
     };
 }
 

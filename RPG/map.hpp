@@ -6,41 +6,24 @@
 namespace RPG {
     class Map {
     protected:
-        MapObject ***lmap;
-        MapObject *tile;
-        unsigned xsize;
-        unsigned ysize;
+        std::vector<MapObject*> ls;
+        std::vector<std::vector<char> > mp;
     public:
-        Map(unsigned x=5, unsigned y=10)
-        : xsize(x), ysize(y)
+        Map(unsigned height=5, unsigned width=10)
         {
-            lmap = new MapObject** [x];
-            tile = new MapObject("tile",0,0,' ',false);
-            for (unsigned i=0; i<x; ++i)
+            std::vector<char> temp;
+            for (unsigned i=0; i<width; ++i)
             {
-                lmap[i] = new MapObject* [y];
+                temp.push_back(' ');
             }
-            for (unsigned i=0; i<x; ++i)
+            for (unsigned i=0; i<height; ++i)
             {
-                for (unsigned l=0; l<y; ++l)
-                {
-                    lmap[i][l] = tile;
-                }
+                mp.push_back(temp);
             }
         }
         void draw();
         void reset();
-        bool isTile(const unsigned&,const unsigned&);
-        bool isMatch(const unsigned&,const unsigned&);
         void addMapObject(MapObject*);
-        ~Map()
-        {
-            for (unsigned i=0; i<xsize; ++i)
-            {
-                delete [] lmap[i];
-            }
-            delete tile;
-        }
     };
 }
 #endif // MAP_HPP
