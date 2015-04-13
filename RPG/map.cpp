@@ -27,18 +27,28 @@ namespace RPG {
     }
     void Map::reset()
     {
+        unsigned x,y;
         for (unsigned i=0; i<xsize; ++i)
         {
             for (unsigned l=0; l<ysize; ++l)
             {
-                if (!isTile(i,l) )
+                if (isTile(i,l) ) {}
+                else if (!isMatch(i,l) )
                 {
-                    if (!isMatch(i,l) )
+                    x = lmap[i][l]->getXpos();
+                    y = lmap[i][l]->getYpos();
+                    if (isTile(x,y) )
                     {
-                        lmap[lmap[i][l]->getXpos()][lmap[i][l]->getYpos()] = lmap[i][l];
-                        lmap[i][l]=tile;
+                        lmap[x][y] = lmap[i][l];
+                        lmap[i][l] = tile;
+                    }
+                    else
+                    {
+                        lmap[i][l]->setXpos(i);
+                        lmap[i][l]->setYpos(l);
                     }
                 }
+
             }
         }
     }

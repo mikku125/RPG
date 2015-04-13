@@ -10,7 +10,7 @@ namespace RPG {
         {
             RPG::Hero hero("warrior",1,1,5,1,'H');
             RPG::Unit monster("goblin",3,7,1,1,'G');
-            RPG::Unit thing("chest",3,3,'C');
+            RPG::Unit thing("chest",3,1,'C');
             monster.info();
             RPG::Map lvlMap;
             lvlMap.addMapObject(&hero);

@@ -30,6 +30,14 @@ namespace RPG {
         {
             return name;
         }
+        virtual void setXpos(const unsigned& x)
+        {
+            xpos=x;
+        }
+        virtual void setYpos(const unsigned& y)
+        {
+            ypos=y;
+        }
         virtual ~MapObject(){}
     };
 }

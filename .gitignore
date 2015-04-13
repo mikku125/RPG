@@ -1,0 +1,6 @@
+*.exe
+*.layout
+RPG/obj/Debug/prog.o
+*.o
+RPG/RPG.cbp
+*.depend
