@@ -5,28 +5,58 @@ namespace RPG {
 
     void Hero::info() const
     {
-        std::cout << name << '\t' << dmg << '\t' << hp << '\t' << exp << '\t' << xpos << '\t' << ypos << '\t' << std::endl;
+        std::cout << "This is level " << lvl << " " << name << '\n'
+        << "Number of hitpoints is " << hp << '\n'
+        << "Damage is " << dmg << '\n'
+        << "position is : " << xpos << " , " << ypos << std::endl;
     }
-    void Hero::move()
+    void Hero::levelUp()
+    {
+        ++lvl;
+    }
+    void Hero::move(const Map& m)
     {
         char dir;
         std::cin >> dir;
         switch (dir)
         {
             case 'w' :
-                --xpos;
+                if (isSpotEmpty(m,xpos-1,ypos) )
+                {
+                    --xpos;
+                }
                 break;
             case 's' :
-                ++xpos;
+                if (isSpotEmpty(m,xpos+1,ypos) )
+                {
+                    ++xpos;
+                }
                 break;
             case 'a' :
-                --ypos;
+                if (isSpotEmpty(m,xpos,ypos-1) )
+                {
+                    --ypos;
+                }
                 break;
             case 'd' :
-                ++ypos;
+                if (isSpotEmpty(m,xpos,ypos+1) )
+                {
+                    ++ypos;
+                }
                 break;
             default :
                 break;
+        }
+    }
+    bool Hero::isSpotEmpty(const Map& m, const unsigned& x, const unsigned& y)
+    {
+        if (m.getMapSym(x,y)==' ')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

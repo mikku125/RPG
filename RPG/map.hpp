@@ -23,6 +23,10 @@ namespace RPG {
         }
         void draw();
         void reset();
+        const char& getMapSym(const unsigned& x, const unsigned& y) const
+        {
+            return mp[x][y];
+        }
         void addMapObject(MapObject*);
     };
 }

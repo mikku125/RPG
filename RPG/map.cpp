@@ -41,6 +41,5 @@ namespace RPG {
     void Map::addMapObject(MapObject* mo)
     {
         ls.push_back(mo);
- //       mp[mo->getXpos()][mo->getYpos()]=mo->getSym();
     }
 }

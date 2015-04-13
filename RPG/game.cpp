@@ -1,3 +1,4 @@
+#include <iostream>
 #include "game.hpp"
 #include "map.hpp"
 #include "unit.hpp"
@@ -9,7 +10,7 @@ namespace RPG {
         while(!stop)
         {
             RPG::Hero hero("warrior",1,1,5,1,'H');
-            RPG::Unit monster("goblin",3,7,1,1,'G');
+            RPG::Unit monster("goblin",3,5,1,1,'G');
             RPG::Unit thing("chest",3,1,'C');
             monster.info();
             RPG::Map lvlMap;
@@ -17,14 +18,14 @@ namespace RPG {
             lvlMap.addMapObject(&monster);
             lvlMap.addMapObject(&thing);
             lvlMap.draw();
-            hero.move();
-            monster.moveRight();
+            hero.move(lvlMap);
+            monster.moveRight(lvlMap);
             lvlMap.draw();
-            hero.move();
-            monster.moveRight();
+            hero.move(lvlMap);
+            monster.moveRight(lvlMap);
             lvlMap.draw();
-            hero.move();
-            monster.moveUp();
+            hero.move(lvlMap);
+            monster.moveUp(lvlMap);
             lvlMap.draw();
             stop= true;
         }

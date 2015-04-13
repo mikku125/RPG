@@ -2,6 +2,7 @@
 #define UNIT_HPP
 #include<string>
 #include "mapobject.hpp"
+#include "map.hpp"
 
 namespace RPG {
     class Unit : public MapObject {
@@ -14,11 +15,12 @@ namespace RPG {
         : MapObject(str,x,y,c,true), hp(h), dmg(d), lvl(1)
         {}
         virtual void info() const;
-        virtual void moveLeft() ;
-        virtual void moveRight() ;
-        virtual void moveUp() ;
-        virtual void moveDown() ;
+        virtual void moveLeft(const Map&) ;
+        virtual void moveRight(const Map&) ;
+        virtual void moveUp(const Map&) ;
+        virtual void moveDown(const Map&) ;
         virtual void levelUp();
+        bool isSpotEmpty(const Map&,const unsigned&,const unsigned&);
         virtual ~Unit(){}
     };
 }

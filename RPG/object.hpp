@@ -12,8 +12,7 @@ namespace RPG {
         {}
     public:
         virtual void info() const = 0;
-        virtual ~Object()
-        {};
+        virtual ~Object(){};
     };
 }
 #endif // OBJECT_HPP

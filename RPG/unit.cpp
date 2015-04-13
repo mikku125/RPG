@@ -13,20 +13,43 @@ namespace RPG {
     {
         ++lvl;
     }
-    void Unit::moveLeft()
+    void Unit::moveLeft(const Map& m)
     {
-        --ypos;
+        if (isSpotEmpty(m,xpos,ypos-1) )
+        {
+            --ypos;
+        }
     }
-    void Unit::moveRight()
+    void Unit::moveRight(const Map& m)
     {
-        ++ypos;
+        if (isSpotEmpty(m,xpos,ypos+1) )
+        {
+            ++ypos;
+        }
     }
-    void Unit::moveUp()
+    void Unit::moveUp(const Map& m)
     {
-        --xpos;
+        if (isSpotEmpty(m,xpos-1,ypos) )
+        {
+            --xpos;
+        }
     }
-    void Unit::moveDown()
+    void Unit::moveDown(const Map& m)
     {
-        ++xpos;
+        if (isSpotEmpty(m,xpos+1,ypos) )
+        {
+            ++xpos;
+        }
+    }
+    bool Unit::isSpotEmpty(const Map& m, const unsigned& x, const unsigned& y)
+    {
+        if (m.getMapSym(x,y)==' ')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
