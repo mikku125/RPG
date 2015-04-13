@@ -1,5 +1,6 @@
 #include<iostream>
 #include "unit.hpp"
+#include "mapobject.hpp"
 
 namespace RPG {
     void Unit::info() const

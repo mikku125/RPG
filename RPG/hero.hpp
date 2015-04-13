@@ -16,10 +16,7 @@ namespace RPG {
         }
         virtual void info() const;
         virtual void move();
-        virtual ~Hero()
-        {
-
-        }
+        virtual ~Hero(){}
     };
 }
 

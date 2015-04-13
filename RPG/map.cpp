@@ -4,41 +4,70 @@
 namespace RPG {
     void Map::draw()
     {
-        std::cout << std::endl << std::endl << std::endl;
-        Map::reset();
-        for (int i=0; i<ls.size(); ++i)
+        reset();
+        for (unsigned i=0; i<ysize+2; ++i)
         {
-            mp[ls[i]->getXpos()][ls[i]->getYpos()] = ls[i]->getSym();
+            std::cout << '#';
         }
-        for (int i=0; i<mp.size(); ++i)
+        std::cout << std::endl;
+        for (unsigned i=0; i<xsize; ++i)
         {
-            for (int l=0; l<(mp[0]).size(); ++l)
+            std::cout << '#';
+            for (unsigned l=0; l<ysize; ++l)
             {
-                std::cout << mp[i][l];
+                std::cout << lmap[i][l] -> getSym();
             }
-            std::cout << std::endl;
+            std::cout << '#' << std::endl;
         }
+        for (unsigned i=0; i<ysize+2; ++i)
+        {
+            std::cout << '#';
+        }
+        std::cout << std::endl;
     }
     void Map::reset()
     {
-            for (int i=0; i<mp.size(); ++i)
+        for (unsigned i=0; i<xsize; ++i)
+        {
+            for (unsigned l=0; l<ysize; ++l)
             {
-                for (int l=0; l<(mp[0]).size()+2; ++l)
+                if (!isTile(i,l) )
                 {
-                    if((i==0)||(i==mp.size()-1)||(l==0)||(l==(mp[0]).size()-1))
+                    if (!isMatch(i,l) )
                     {
-                        mp[i][l]='#';
-                    }
-                    else
-                    {
-                        mp[i][l]=' ';
+                        lmap[lmap[i][l]->getXpos()][lmap[i][l]->getYpos()] = lmap[i][l];
+                        lmap[i][l]=tile;
                     }
                 }
             }
+        }
     }
-    void Map::addMapObject(MapObject* mo)
+    bool Map::isTile(const unsigned& x, const unsigned& y)
     {
-        ls.push_back(mo);
- //       mp[mo->getXpos()][mo->getYpos()]=mo->getSym();
+        if (lmap[x][y]->getName()=="tile")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool Map::isMatch(const unsigned& x, const unsigned& y)
+    {
+        unsigned tempX = lmap[x][y] -> getXpos();
+        unsigned tempY = lmap[x][y] -> getYpos();
+        if ((x==tempX)&&(y==tempY))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    void Map::addMapObject(MapObject* mapobj)
+    {
+        lmap[mapobj->getXpos()][mapobj->getYpos()] = mapobj;
     }
 }
