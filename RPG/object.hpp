@@ -9,15 +9,11 @@ namespace RPG {
         std::string name;
         Object(const std::string& str = "noname" )
         : name(str)
-        {
-
-        }
+        {}
     public:
         virtual void info() const = 0;
         virtual ~Object()
-        {
-
-        };
+        {};
     };
 }
 #endif // OBJECT_HPP

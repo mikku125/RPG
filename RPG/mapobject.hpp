@@ -5,20 +5,24 @@
 namespace RPG {
     class MapObject : public Object {
     protected:
-        int xpos;
-        int ypos;
+        unsigned xpos;
+        unsigned ypos;
         bool movable;
     public:
-        MapObject(const std::string& str="noname",int x=0,int y=0,bool b=false)
+        MapObject(const std::string& str="noname",unsigned x=0,unsigned y=0,bool b=false)
         : Object(str), xpos(x), ypos(y), movable(b)
-        {
-
-        }
+        {}
         virtual void info() const;
-        virtual ~MapObject()
+        virtual unsigned getXpos() const
         {
-
+            return xpos;
         }
+        virtual unsigned getYpos() const
+        {
+            return ypos;
+        }
+        virtual ~MapObject()
+        {}
     };
 }
 

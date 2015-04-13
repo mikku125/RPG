@@ -9,7 +9,7 @@ namespace RPG {
         int hp;
         int exp;
     public:
-        Hero(const std::string& str,int x=0,int y=0,int d=1,int h=1)
+        Hero(const std::string& str,unsigned x=0,unsigned y=0,int d=1,int h=1)
         : MapObject(str,x,y,true), dmg(d), hp(h), exp(0)
         {
 
