@@ -5,7 +5,7 @@ namespace RPG {
     void Unit::info() const
     {
         std::cout << "This is level " << lvl << " " << name << '\n'
-        << "Number of hitpoints " << hp << '\n'
+        << "Number of hitpoints is " << hp << '\n'
         << "Damage is " << dmg << '\n'
         << "position is : " << xpos << " , " << ypos << std::endl;
     }
@@ -13,22 +13,20 @@ namespace RPG {
     {
         ++lvl;
     }
-    void Unit::move(const char& dir)
+    void Unit::moveLeft()
     {
-        switch (dir)
-        {
-            case 'w' :
-                ++ypos;
-                break;
-            case 's' :
-                --ypos;
-                break;
-            case 'a' :
-                --xpos;
-                break;
-            case 'd' :
-                ++xpos;
-                break;
-        }
+        --ypos;
+    }
+    void Unit::moveRight()
+    {
+        ++ypos;
+    }
+    void Unit::moveUp()
+    {
+        --xpos;
+    }
+    void Unit::moveDown()
+    {
+        ++xpos;
     }
 }

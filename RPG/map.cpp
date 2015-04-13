@@ -2,31 +2,43 @@
 #include "map.hpp"
 
 namespace RPG {
-    void Map::draw() const
+    void Map::draw()
     {
-
-        for (int i=0; i<7; ++i)
+        std::cout << std::endl << std::endl << std::endl;
+        Map::reset();
+        for (int i=0; i<ls.size(); ++i)
         {
-            for (int l=0; l<12; ++l)
+            mp[ls[i]->getXpos()][ls[i]->getYpos()] = ls[i]->getSym();
+        }
+        for (int i=0; i<mp.size(); ++i)
+        {
+            for (int l=0; l<(mp[0]).size(); ++l)
             {
-                if((i==0)||(i==6)||(l==0)||(l==11))
-                {
-                    std::cout << '#';
-                }
-                else
-                {
-                    std::cout << ' ';
-                }
+                std::cout << mp[i][l];
             }
             std::cout << std::endl;
         }
-        for (int i=0; i<ls.size(); ++i)
-        {
-
-        }
+    }
+    void Map::reset()
+    {
+            for (int i=0; i<mp.size(); ++i)
+            {
+                for (int l=0; l<(mp[0]).size()+2; ++l)
+                {
+                    if((i==0)||(i==mp.size()-1)||(l==0)||(l==(mp[0]).size()-1))
+                    {
+                        mp[i][l]='#';
+                    }
+                    else
+                    {
+                        mp[i][l]=' ';
+                    }
+                }
+            }
     }
     void Map::addMapObject(MapObject* mo)
     {
         ls.push_back(mo);
+ //       mp[mo->getXpos()][mo->getYpos()]=mo->getSym();
     }
 }

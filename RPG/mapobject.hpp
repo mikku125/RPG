@@ -7,19 +7,24 @@ namespace RPG {
     protected:
         unsigned xpos;
         unsigned ypos;
+        char symbol;
         bool movable;
     public:
-        MapObject(const std::string& str="noname",unsigned x=0,unsigned y=0,bool b=false)
-        : Object(str), xpos(x), ypos(y), movable(b)
+        MapObject(const std::string& str="noname",unsigned x=0,unsigned y=0,char c='X',bool b=false)
+        : Object(str), xpos(x), ypos(y), symbol(c), movable(b)
         {}
         virtual void info() const;
         virtual unsigned getXpos() const
         {
             return xpos;
         }
-        virtual unsigned getYpos() const
+        virtual const unsigned& getYpos() const
         {
             return ypos;
+        }
+        virtual char getSym() const
+        {
+            return symbol;
         }
         virtual ~MapObject()
         {}
