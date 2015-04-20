@@ -1,45 +1,66 @@
 #include<iostream>
+
 #include "map.hpp"
 
-namespace RPG {
+namespace RPG
+{
+    void Map::addMapObject(MapObject* mapObj)
+    {
+        ls.push_back(mapObj);
+    }
+
     void Map::draw()
     {
         Map::reset();
-        for (unsigned i=0; i<ls.size(); ++i)
+        Map::update();
+
+        std::cout << "\n\n\n\n\n"
+        <<"\n\n\n\n\n"
+        <<"\n\n\n\n\n"
+        <<"\n\n\n\n\n";
+
+        for (unsigned i=0; i<stage[0].size()+2; ++i)
         {
-            mp[ls[i]->getXpos()][ls[i]->getYpos()] = ls[i]->getSym();
-        }
-        for (unsigned i=0; i<(mp[0]).size()+2; ++i)
-        {
-            std::cout << '#';
+            std::cout<< "# ";
         }
         std::cout << std::endl;
-        for (unsigned i=0; i<mp.size(); ++i)
+
+        for (unsigned i=0; i<stage.size(); ++i)
         {
-            std::cout << '#';
-            for (unsigned l=0; l<(mp[0]).size(); ++l)
+            std::cout << "# ";
+            for (unsigned j=0; j<stage[i].size(); ++j)
             {
-                std::cout << mp[i][l];
+                std::cout << stage[i][j] << ' ';
             }
-            std::cout << '#' << std::endl;
+            std::cout << "# " << std::endl;
         }
-        for (unsigned i=0; i<(mp[0]).size()+2; ++i)
+
+        for (unsigned i=0; i<stage[0].size()+2; ++i)
         {
-            std::cout << '#';
+            std::cout<< "# ";
         }
+        std::cout << std::endl;
+
+        std::cout << std::endl;
     }
+
     void Map::reset()
     {
-        for (unsigned i=0; i<mp.size(); ++i)
+        for (unsigned i=0; i<stage.size(); ++i)
         {
-            for (unsigned l=0; l<(mp[0]).size(); ++l)
+            for (unsigned j=0; j<stage[i].size(); ++j)
             {
-                mp[i][l]=' ';
+                stage[i][j] = ' ';
             }
         }
     }
-    void Map::addMapObject(MapObject* mo)
+
+    void Map::update()
     {
-        ls.push_back(mo);
+        for (unsigned i=0; i<ls.size(); ++i)
+        {
+            stage[ls[i]->getXpos() ][ls[i]->getYpos() ] = ls[i]->getSymb();
+        }
     }
+
 }

@@ -1,55 +1,39 @@
 #include<iostream>
+
 #include "unit.hpp"
 
 namespace RPG {
     void Unit::info() const
     {
         std::cout << "This is level " << lvl << " " << name << '\n'
-        << "Number of hitpoints is " << hp << '\n'
-        << "Damage is " << dmg << '\n'
-        << "position is : " << xpos << " , " << ypos << std::endl;
+        << "number of hitpoints is " << hp << " of " << maxHp << '\n'
+        << "number of magicpoints is " << mp << " of " << maxMp << '\n'
+        << "damage is " << dmg << '\n'
+        << "position is : " << xpos << " , " << ypos << std::endl << std::endl;
     }
-    void Unit::levelUp()
+
+    void Unit::moveL()
     {
-        ++lvl;
+       --ypos;
     }
-    void Unit::moveLeft(const Map& m)
+
+    void Unit::moveR()
     {
-        if (isSpotEmpty(m,xpos,ypos-1) )
-        {
-            --ypos;
-        }
+        ++ypos;
     }
-    void Unit::moveRight(const Map& m)
+
+    void Unit::moveU()
     {
-        if (isSpotEmpty(m,xpos,ypos+1) )
-        {
-            ++ypos;
-        }
+        --xpos;
     }
-    void Unit::moveUp(const Map& m)
+
+    void Unit::moveD()
     {
-        if (isSpotEmpty(m,xpos-1,ypos) )
-        {
-            --xpos;
-        }
+        ++xpos;
     }
-    void Unit::moveDown(const Map& m)
+
+    unsigned Unit::action()
     {
-        if (isSpotEmpty(m,xpos+1,ypos) )
-        {
-            ++xpos;
-        }
-    }
-    bool Unit::isSpotEmpty(const Map& m, const unsigned& x, const unsigned& y)
-    {
-        if (m.getMapSym(x,y)==' ')
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return 2;
     }
 }

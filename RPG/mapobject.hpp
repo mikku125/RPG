@@ -1,31 +1,29 @@
 #ifndef MAPOBJECT_HPP
 #define MAPOBJECT_HPP
+
 #include "object.hpp"
+#include "pos.hpp"
 
 namespace RPG {
-    class MapObject : public Object {
+    class MapObject : public Object , public Pos{
     protected:
-        unsigned xpos;
-        unsigned ypos;
         char symbol;
         bool movable;
+
     public:
-        MapObject(const std::string& str="noname",unsigned x=0,unsigned y=0,char c='X',bool b=false)
-        : Object(str), xpos(x), ypos(y), symbol(c), movable(b)
+        MapObject(const std::string& str="noname",char c='X',unsigned x=0,unsigned y=0,bool b=false)
+        : Object(str), Pos(x,y), symbol(c), movable(b)
         {}
+
         virtual void info() const;
-        virtual const unsigned& getXpos() const
-        {
-            return xpos;
-        }
-        virtual const unsigned& getYpos() const
-        {
-            return ypos;
-        }
-        virtual const char& getSym() const
+
+        const char& getSymb() const
         {
             return symbol;
         }
+
+        virtual unsigned action();
+
         virtual ~MapObject(){}
     };
 }

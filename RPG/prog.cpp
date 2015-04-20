@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 #include "game.hpp"
-#include "hero.hpp"
+#include "player.hpp"
 
 int main() {
     RPG::Game game;
