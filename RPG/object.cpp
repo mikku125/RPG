@@ -1,7 +1,7 @@
 #include<iostream>
 #include "object.hpp"
 
-namespace RPG {
+namespace Rpg {
 
     void Object::info() const
     {

@@ -4,17 +4,17 @@
 #include "mapobject.hpp"
 #include "inventory.hpp"
 
-namespace RPG
+namespace Rpg
 {
     class Cont : public MapObject , public Inventory
     {
     public:
-        Cont(const std::string& str="noname",char c='X',unsigned x=0,unsigned y=0,bool b=false)
-        : MapObject(str,c,x,y,b)
+        Cont(const std::string& str="noname",char c='X',unsigned x=0,unsigned y=0)
+        : MapObject(str,c,x,y)
         {}
 
         void info() const;
-
+        virtual unsigned call() const;
         unsigned action();
     };
 }

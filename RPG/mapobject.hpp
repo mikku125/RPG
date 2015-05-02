@@ -19,6 +19,7 @@ namespace Rpg
             return sym;
         }
 
+        void setSym(const char&);
         virtual void info() const;
         virtual unsigned call() const=0;
         ~MapObject() {}

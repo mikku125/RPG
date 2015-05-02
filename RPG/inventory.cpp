@@ -2,7 +2,7 @@
 
 #include "inventory.hpp"
 
-namespace RPG
+namespace Rpg
 {
     void Inventory::info() const
     {
@@ -13,49 +13,29 @@ namespace RPG
         }
     }
 
+    Item* Inventory::getItem(const unsigned& i)
+    {
+        return inv[i];
+    }
+
     void Inventory::addItem(Item* item)
     {
         inv.push_back(item);
     }
 
-    void Inventory::takeItem(Inventory* inv2, const unsigned& i)
-    {
-        inv2->addItem(inv[i]);
-        removeItem(inv[i]);
-    }
 
-    void Inventory::takeAllItems(Inventory* inv2)
+    void Inventory::removeItem(const unsigned& i)
     {
-        while (!(inv.size()==0))
+        for (unsigned j=i; j<inv.size()-1; ++j)
         {
-            takeItem(inv2,0);
-        }
-    }
-
-    void Inventory::removeItem(Item* item)
-    {
-        unsigned i = findItem(item);
-        for (i; i<inv.size()-1; ++i)
-        {
-            inv[i]=inv[i+1];
+            inv[j]=inv[j+1];
         }
         inv.pop_back();
     }
-
-    void Inventory::useItem(Item* item)
+    void Inventory::takeItem(const unsigned& i, Inventory* inv1)
     {
-
+        inv1->addItem(inv[i] );
+        removeItem(i);
     }
 
-    unsigned Inventory::findItem(Item* item)
-    {
-        for (unsigned i=0; i<inv.size(); ++i)
-        {
-            if (inv[i] == item)
-            {
-                return i;
-            }
-        }
-        return 0;
-    }
 }

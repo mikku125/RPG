@@ -14,7 +14,7 @@ namespace Rpg
     protected:
         std::vector<MapObject*> mapObjVec;
         char mp[15][15];
-        unsigned nrMapObjs;
+
     public:
         Map()
         {
@@ -25,21 +25,23 @@ namespace Rpg
                     mp[i][j]=' ';
                 }
             }
-            nrMapObjs=0;
         }
 
-        MapObject* operator[](const unsigned& i)
-        {
-            return mapObjVec[i];
-        }
+        unsigned findMapObj(MapObject*);
+
         MapObject* getMapObj(const unsigned& i)
         {
             return mapObjVec[i];
         }
-        unsigned& getSize()
+
+        void removeMapObj(const unsigned&);
+        void removeMapObj(MapObject*);
+
+        unsigned getSize()
         {
-            return nrMapObjs;
+            return mapObjVec.size();
         }
+
         void addMapObj(MapObject*);
         void resetMap();
         void updateMap();

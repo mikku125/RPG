@@ -2,10 +2,11 @@
 #define PLAYER_HPP
 
 #include "unit.hpp"
+#include "inventory.hpp"
 
 namespace Rpg
 {
-    class Player : public Unit
+    class Player : public Unit, public Inventory
     {
     protected:
 
@@ -16,6 +17,7 @@ namespace Rpg
         virtual void info() const;
         virtual unsigned call() const;
         void move(bool*);
+        void openInv();
     };
 }
 #endif // PLAYER_HPP

@@ -1,6 +1,6 @@
 #include "pos.hpp"
 
-namespace RPG
+namespace Rpg
 {
 
 }

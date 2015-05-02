@@ -5,6 +5,7 @@
 #include "player.hpp"
 #include "unit.hpp"
 #include "pos.hpp"
+#include "cont.hpp"
 
 namespace Rpg
 {
@@ -21,8 +22,9 @@ namespace Rpg
             p1 = player;
         }
         void startGame();
-        void checkMap(Map*);
-        void startFight(Unit*);
+        void checkMap(Map*,bool*);
+        void fightUnit(Unit*,Map*,bool*);
+        void openCont(Cont*,Map*);
     };
 }
 #endif // GAME_HPP

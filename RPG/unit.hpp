@@ -20,6 +20,37 @@ namespace Rpg
         void moveS();
         void moveA();
         void moveD();
+
+        int& getHp()
+        {
+            return hp;
+        }
+
+        int& getMaxHp()
+        {
+            return maxHp;
+        }
+
+        int& getDmg()
+        {
+            return dmg;
+        }
+
+        void changeHp(const unsigned& i)
+        {
+            hp+=i;
+        }
+
+        void changeMaxHp(const unsigned& i)
+        {
+            maxHp+=i;
+        }
+
+        void changeDmg(const unsigned& i)
+        {
+            dmg+=i;
+        }
+
         virtual unsigned call() const;
     };
 }

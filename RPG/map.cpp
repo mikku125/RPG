@@ -4,10 +4,40 @@
 
 namespace Rpg
 {
+    unsigned Map::findMapObj(MapObject* mapObj)
+    {
+        for (unsigned i=0; i<mapObjVec.size(); ++i)
+        {
+            if (mapObj == mapObjVec[i] )
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
     void Map::addMapObj(MapObject* mapObj)
     {
         mapObjVec.push_back(mapObj);
-        ++nrMapObjs;
+    }
+
+    void Map::removeMapObj(const unsigned& i)
+    {
+        for (unsigned j=i; j<mapObjVec.size()-1; ++j)
+        {
+            mapObjVec[j] = mapObjVec[j+1];
+        }
+        mapObjVec.pop_back();
+    }
+
+    void Map::removeMapObj(MapObject* mapObj)
+    {
+        unsigned i = findMapObj(mapObj);
+        for (unsigned j=i; j<mapObjVec.size()-1; ++j)
+        {
+            mapObjVec[j] = mapObjVec[j+1];
+        }
+        mapObjVec.pop_back();
     }
 
     void Map::resetMap()
@@ -23,7 +53,7 @@ namespace Rpg
 
     void Map::updateMap()
     {
-        for (unsigned i=0; i<nrMapObjs; ++i)
+        for (unsigned i=0; i<mapObjVec.size(); ++i)
         {
             mp[mapObjVec[i]->getXpos() ][mapObjVec[i]->getYpos() ] = mapObjVec[i]->getSym();
         }
@@ -34,7 +64,7 @@ namespace Rpg
         resetMap();
         updateMap();
 
-        std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+        std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
 
         for (unsigned i=0; i<17; ++i)
         {

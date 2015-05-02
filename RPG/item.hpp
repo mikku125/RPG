@@ -6,7 +6,7 @@
 #include "object.hpp"
 #include "effect.hpp"
 
-namespace RPG
+namespace Rpg
 {
     class Item : public Object, public Effect
     {
@@ -16,14 +16,19 @@ namespace RPG
         int maxDur;
 
     public:
-        Item(const std::string& str, const bool& o=true, const int& d = 0, const int& mD = 0,
-             const int& hp=0, const int& mp=0, const int& dmg=0, const int& rhp=0, const int& rmp=0)
-        : Object(str), Effect(hp,mp,dmg,rhp,rmp), oneUse(o), dur(d), maxDur(mD)
+        Item(std::string str, bool o=true, int d = 0,
+             int hp=0, int dmg=0, int rhp=0)
+        : Object(str), Effect(hp,dmg,rhp), oneUse(o), dur(d), maxDur(d)
         {}
 
         virtual void info() const;
 
         virtual void useItem();
+
+        bool& isOneUse()
+        {
+            return oneUse;
+        }
 
         virtual ~Item(){};
     };

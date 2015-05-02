@@ -5,7 +5,7 @@
 
 #include "item.hpp"
 
-namespace RPG
+namespace Rpg
 {
     class Inventory
     {
@@ -17,28 +17,14 @@ namespace RPG
         {}
 
         virtual void info() const;
-
-        Item* getItem(const unsigned& i)
-        {
-            return inv[i];
-        }
-
-        Item* operator[](const unsigned& i)
-        {
-            return inv[i];
-        }
-
-        void takeItem(Inventory*,const unsigned&);
-
-        void takeAllItems(Inventory*);
-
+        Item* getItem(const unsigned&);
         void addItem(Item*);
-
-        void removeItem(Item*);
-
-        void useItem(Item*);
-
-        unsigned findItem(Item*);
+        void removeItem(const unsigned&);
+        void takeItem(const unsigned&,Inventory*);
+        unsigned getSize() const
+        {
+            return inv.size();
+        }
     };
 }
 #endif // INVENTORY_HPP

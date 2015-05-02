@@ -2,11 +2,11 @@
 
 #include "item.hpp"
 
-namespace RPG
+namespace Rpg
 {
     void Item::info() const
     {
-        std::cout << "This is " << name << std::endl;
+        std::cout << name << std::endl;
         if (oneUse)
         {
             std::cout << "One use only!" << std::endl;

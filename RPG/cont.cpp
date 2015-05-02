@@ -2,17 +2,19 @@
 
 #include "cont.hpp"
 
-namespace RPG
+namespace Rpg
 {
     void Cont::info() const
     {
         MapObject::info();
+        std::cout << "that contains:" << std::endl;
+        std::cout << std::endl;
         Inventory::info();
     }
 
-    unsigned Cont::action()
+    unsigned Cont::call() const
     {
-        return 1;
+        return 2;
     }
 
 }

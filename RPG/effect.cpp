@@ -2,17 +2,13 @@
 
 #include "effect.hpp"
 
-namespace RPG
+namespace Rpg
 {
     void Effect::info() const
     {
         if (incHp)
         {
             std::cout << "increase hp by " << incHp << std::endl;
-        }
-        if (incMp)
-        {
-            std::cout << "increase mp by " << incMp << std::endl;
         }
         if (incDmg)
         {
@@ -22,9 +18,25 @@ namespace RPG
         {
             std::cout << "replenishes " << repHp << " hp" << std::endl;
         }
-        if (repMp)
+    }
+
+    void Effect::applyEffects(Unit* unit)
+    {
+        if (incHp)
         {
-            std::cout << "replenishes " << repMp << " mp" << std::endl;
+            unit->changeMaxHp(incHp);
+        }
+        if (incDmg)
+        {
+            unit->changeDmg(incDmg);
+        }
+        if (repHp)
+        {
+            if ( (unit->getMaxHp() - unit->getHp() )<repHp )
+            {
+                repHp = (unit->getMaxHp() - unit->getHp() );
+            }
+            unit->changeHp(repHp);
         }
     }
 }
