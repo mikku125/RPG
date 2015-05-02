@@ -1,18 +1,20 @@
 #ifndef OBJECT_HPP
 #define OBJECT_HPP
 
-#include<string>
+#include <string>
 
-namespace RPG {
-    class Object {
+namespace Rpg
+{
+    class Object
+    {
     protected:
         std::string name;
-        Object(const std::string& str = "noname" )
-        : name(str)
-        {}
+        Object(std::string name="name")
+        : name(name) {}
+
     public:
         virtual void info() const = 0;
-        virtual ~Object(){};
+        ~Object() {}
     };
 }
 #endif // OBJECT_HPP

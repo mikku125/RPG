@@ -1,30 +1,52 @@
-#include <iostream>
-
 #include "game.hpp"
 
-namespace RPG {
-    void Game::startGame(){
-        bool stop = false;
-        Map stage(15,15);
-        Player hero("warrior",'H',1,1,true,20,20,0,0,1);
-        Unit unit("goblin",'G',3,5,true,10,10,0,0,4,1);
-        Cont cont("chest",'C',3,1);
-        Item item1("potion",true,0,0,0,0,0,10,0);
-        Item item2("sword",false,20,20,0,0,2,0,0);
-        stage.addMapObject(&hero);
-        stage.addMapObject(&unit);
-        stage.addMapObject(&cont);
-        cont.addItem(&item1);
-        cont.addItem(&item2);
-        hero.info();
-        unit.info();
-        cont.info();
-        stage.draw();
+#include <iostream>
 
-        while(!stop)
+namespace Rpg
+{
+    void Game::startGame()
+    {
+        bool stop = true;
+        Player player;
+        assignPlayer(&player);
+        Unit unit("goblin",'G',3,4,5,1);
+        Map map;
+        map.addMapObj(&player);
+        map.addMapObj(&unit);
+        map.draw();
+        while (stop)
         {
-            hero.movePlayer(&stop,&stage);
-            stage.draw();
+            checkMap(&map);
+            player.move(&stop);
+            map.draw();
+        }
+    }
+
+    void Game::checkMap(Map* map)
+    {
+        for (unsigned i=1; i<map->getSize(); ++i)
+        {
+            if (( map->getMapObj(i)->getPos() == p1->getPos() )&&( map->getMapObj(i)->call() == 1) )
+            {
+                Unit enemy = dynamic_cast<Unit&>(*(map->getMapObj(i) ) );
+                startFight(&enemy);
+            }
+        }
+    }
+
+    void Game::startFight(Unit* unit)
+    {
+        std::cout << "fight!" << std::endl;
+        char fKey='a';
+        while (fKey!='r')
+        {
+            unit->info();
+            std::cout << "(A)ttack or (R)un?" << '\n';
+            std::cin >> fKey;
+            if (fKey=='a')
+            {
+                std::cout << "hit!" << '\n';
+            }
         }
     }
 }

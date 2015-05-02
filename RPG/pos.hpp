@@ -1,7 +1,7 @@
 #ifndef POS_HPP
 #define POS_HPP
 
-namespace RPG
+namespace Rpg
 {
     class Pos
     {
@@ -10,45 +10,39 @@ namespace RPG
         unsigned ypos;
 
     public:
-        Pos(const unsigned x=0, const unsigned y=0)
-        : xpos(x), ypos(y)
-        {}
+        Pos(unsigned x=0, unsigned y=0)
+        : xpos(x), ypos(y) {}
 
-        const unsigned& getXpos() const
-        {
-            return xpos;
-        }
-
-        const unsigned& getYpos() const
-        {
-            return ypos;
-        }
-
-        const Pos& getPos() const
+        Pos& getPos()
         {
             return *this;
         }
 
-        void setXpos(const unsigned& x)
+        unsigned& getXpos()
         {
-            xpos = x;
+            return xpos;
         }
 
-        void setYpos(const unsigned& y)
+        unsigned& getYpos()
         {
-            ypos = y;
+            return ypos;
         }
 
-        friend bool operator==(const Pos& pos1,const Pos& pos2)
-        {
-            return (pos1.xpos==pos2.xpos && pos1.ypos==pos2.ypos );
-        }
+        friend bool operator==(const Pos&, const Pos&);
 
-        friend bool operator!=(const Pos& pos1,const Pos& pos2)
-        {
-            return !(pos1==pos2);
-        }
+        friend bool operator!=(const Pos&, const Pos&);
+
+        ~Pos() {}
     };
-}
 
+    inline bool operator==(const Pos& p1, const Pos& p2)
+    {
+        return ( (p1.xpos==p2.xpos) && (p1.ypos==p2.ypos) );
+    }
+
+    inline bool operator!=(const Pos& p1, const Pos& p2)
+    {
+        return !(p1==p2);
+    }
+}
 #endif // POS_HPP

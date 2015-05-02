@@ -4,28 +4,24 @@
 #include "object.hpp"
 #include "pos.hpp"
 
-namespace RPG {
-    class MapObject : public Object , public Pos{
+namespace Rpg
+{
+    class MapObject : public Object, public Pos
+    {
     protected:
-        char symbol;
-        bool movable;
-
+        char sym;
     public:
-        MapObject(const std::string& str="noname",char c='X',unsigned x=0,unsigned y=0,bool b=false)
-        : Object(str), Pos(x,y), symbol(c), movable(b)
-        {}
+        MapObject(std::string name="name", char s='X', unsigned x=0, unsigned y=0)
+        : Object(name), Pos(x,y), sym(s) {}
 
-        virtual void info() const;
-
-        const char& getSymb() const
+        char& getSym()
         {
-            return symbol;
+            return sym;
         }
 
-        virtual unsigned action();
-
-        virtual ~MapObject(){}
+        virtual void info() const;
+        virtual unsigned call() const=0;
+        ~MapObject() {}
     };
 }
-
 #endif // MAPOBJECT_HPP

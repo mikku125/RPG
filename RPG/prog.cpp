@@ -1,9 +1,7 @@
-#include<iostream>
-#include<string>
 #include "game.hpp"
-#include "player.hpp"
 
-int main() {
-    RPG::Game game;
+int main()
+{
+    Rpg::Game game;
     game.startGame();
 }

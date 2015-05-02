@@ -1,25 +1,21 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
-#include "unit.hpp"
-#include "cont.hpp"
 
-namespace RPG
+#include "unit.hpp"
+
+namespace Rpg
 {
     class Player : public Unit
     {
+    protected:
+
     public:
-        Player(const std::string& str="noname", const char& c='X', const unsigned& x=0, const unsigned& y=0, const bool& b=true,
-             const int& h=1, const int& mH=1, const int& m=1, const int& mM=1, const int& d=1, const int& l=1)
-        : Unit(str,c,x,y,b,hp,mH,mp,mM,d,l)
-        {}
+        Player(std::string name="name", char s='H', unsigned x=0, unsigned y=0, int h=10, int d=1)
+        : Unit(name,s,x,y,h,d) {}
 
-        void info() const;
-
-        void movePlayer(bool*, Map*);
-
-        void openInventory();
-
-        MapObject* check(Map*);
+        virtual void info() const;
+        virtual unsigned call() const;
+        void move(bool*);
     };
 }
 #endif // PLAYER_HPP

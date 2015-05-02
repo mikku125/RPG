@@ -1,39 +1,37 @@
-#include<iostream>
-
 #include "unit.hpp"
+#include <iostream>
 
-namespace RPG {
+namespace Rpg
+{
     void Unit::info() const
     {
-        std::cout << "This is level " << lvl << " " << name << '\n'
-        << "number of hitpoints is " << hp << " of " << maxHp << '\n'
-        << "number of magicpoints is " << mp << " of " << maxMp << '\n'
-        << "damage is " << dmg << '\n'
-        << "position is : " << xpos << " , " << ypos << std::endl << std::endl;
+        std::cout << "This is " << name << '\n'
+        << "hitpoints: " << hp << " of " << maxHp << '\n'
+        << "damage: " << dmg << std::endl;
     }
 
-    void Unit::moveL()
-    {
-       --ypos;
-    }
-
-    void Unit::moveR()
-    {
-        ++ypos;
-    }
-
-    void Unit::moveU()
+    void Unit::moveW()
     {
         --xpos;
     }
 
-    void Unit::moveD()
+    void Unit::moveS()
     {
         ++xpos;
     }
 
-    unsigned Unit::action()
+    void Unit::moveA()
     {
-        return 2;
+        --ypos;
+    }
+
+    void Unit::moveD()
+    {
+        ++ypos;
+    }
+
+    unsigned Unit::call() const
+    {
+        return 1;
     }
 }

@@ -1,54 +1,48 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#include<vector>
-
 #include "mapobject.hpp"
+#include "unit.hpp"
+#include "player.hpp"
 
-namespace RPG {
-    class Map {
+#include <vector>
+
+namespace Rpg
+{
+    class Map
+    {
     protected:
-        std::vector<MapObject*> ls;
-        std::vector<std::vector<char> > stage;
-
+        std::vector<MapObject*> mapObjVec;
+        char mp[15][15];
+        unsigned nrMapObjs;
     public:
-        Map(unsigned height=15, unsigned width=15)
+        Map()
         {
-            std::vector<char> temp;
-            for (unsigned i=0; i<height; ++i)
+            for (unsigned i=0; i<15; ++i)
             {
-                for (unsigned j=0; j<width; ++j)
+                for (unsigned j=0; j<15; ++j)
                 {
-                    temp.push_back(' ');
+                    mp[i][j]=' ';
                 }
-                stage.push_back(temp);
-                temp.clear();
             }
+            nrMapObjs=0;
         }
 
-        void addMapObject(MapObject*);
-
-        const char& getSpot(const unsigned& x, const unsigned& y) const
+        MapObject* operator[](const unsigned& i)
         {
-            return stage[x][y];
+            return mapObjVec[i];
         }
-
-        MapObject* getMapObject(const unsigned& i) const
+        MapObject* getMapObj(const unsigned& i)
         {
-            return ls[i];
+            return mapObjVec[i];
         }
-
-        unsigned getLsSize()
+        unsigned& getSize()
         {
-            return ls.size();
+            return nrMapObjs;
         }
-
-        void reset();
-
-        void update();
-
-        bool check();
-
+        void addMapObj(MapObject*);
+        void resetMap();
+        void updateMap();
         void draw();
     };
 }

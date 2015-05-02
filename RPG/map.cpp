@@ -1,66 +1,61 @@
-#include<iostream>
-
 #include "map.hpp"
 
-namespace RPG
+#include <iostream>
+
+namespace Rpg
 {
-    void Map::addMapObject(MapObject* mapObj)
+    void Map::addMapObj(MapObject* mapObj)
     {
-        ls.push_back(mapObj);
+        mapObjVec.push_back(mapObj);
+        ++nrMapObjs;
+    }
+
+    void Map::resetMap()
+    {
+        for (unsigned i=0; i<15; ++i)
+        {
+            for (unsigned j=0; j<15; ++j)
+            {
+                mp[i][j] = ' ';
+            }
+        }
+    }
+
+    void Map::updateMap()
+    {
+        for (unsigned i=0; i<nrMapObjs; ++i)
+        {
+            mp[mapObjVec[i]->getXpos() ][mapObjVec[i]->getYpos() ] = mapObjVec[i]->getSym();
+        }
     }
 
     void Map::draw()
     {
-        Map::reset();
-        Map::update();
+        resetMap();
+        updateMap();
 
-        std::cout << "\n\n\n\n\n"
-        <<"\n\n\n\n\n"
-        <<"\n\n\n\n\n"
-        <<"\n\n\n\n\n";
+        std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
 
-        for (unsigned i=0; i<stage[0].size()+2; ++i)
-        {
-            std::cout<< "# ";
-        }
-        std::cout << std::endl;
-
-        for (unsigned i=0; i<stage.size(); ++i)
+        for (unsigned i=0; i<17; ++i)
         {
             std::cout << "# ";
-            for (unsigned j=0; j<stage[i].size(); ++j)
+        }
+        std::cout << '\n';
+
+        for (unsigned i=0; i<15; ++i)
+        {
+            std::cout << "# ";
+            for (unsigned j=0; j<15; ++j)
             {
-                std::cout << stage[i][j] << ' ';
+                std::cout << mp[i][j] << ' ';
             }
-            std::cout << "# " << std::endl;
+            std::cout <<"# \n";
         }
 
-        for (unsigned i=0; i<stage[0].size()+2; ++i)
+        for (unsigned i=0; i<17; ++i)
         {
-            std::cout<< "# ";
+            std::cout << "# ";
         }
-        std::cout << std::endl;
-
-        std::cout << std::endl;
+        std::cout << '\n';
     }
-
-    void Map::reset()
-    {
-        for (unsigned i=0; i<stage.size(); ++i)
-        {
-            for (unsigned j=0; j<stage[i].size(); ++j)
-            {
-                stage[i][j] = ' ';
-            }
-        }
-    }
-
-    void Map::update()
-    {
-        for (unsigned i=0; i<ls.size(); ++i)
-        {
-            stage[ls[i]->getXpos() ][ls[i]->getYpos() ] = ls[i]->getSymb();
-        }
-    }
-
 }

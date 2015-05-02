@@ -1,19 +1,11 @@
-#include<iostream>
-
 #include "mapobject.hpp"
 
-namespace RPG {
+#include <iostream>
 
+namespace Rpg
+{
     void MapObject::info() const
     {
-        std::cout << "this is " << name << '\n'
-        << "symbol is " << symbol << '\n'
-        << "position is : " << xpos << " , " << ypos << std::endl << std::endl;
+        std::cout << name << std::endl;
     }
-
-    unsigned MapObject::action()
-    {
-        return 0;
-    }
-
 }

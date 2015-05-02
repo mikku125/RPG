@@ -2,17 +2,27 @@
 #define GAME_HPP
 
 #include "map.hpp"
-#include "unit.hpp"
 #include "player.hpp"
-#include "item.hpp"
-#include "cont.hpp"
-#include "inventory.hpp"
+#include "unit.hpp"
+#include "pos.hpp"
 
-namespace RPG {
-    class Game {
+namespace Rpg
+{
+    class Game
+    {
+    protected:
+        Player* p1;
     public:
+        Game()
+        {}
+
+        void assignPlayer(Player* player)
+        {
+            p1 = player;
+        }
         void startGame();
+        void checkMap(Map*);
+        void startFight(Unit*);
     };
 }
-
 #endif // GAME_HPP
