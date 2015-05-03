@@ -9,15 +9,17 @@ namespace Rpg
         bool stop = true;
         Player player;
         assignPlayer(&player);
-        Unit unit("goblin",'G',3,4,5,3);
-        Item item1("potion",true,0,0,0,10);
-        Item item2("sword",false,10,0,1,0);
+        Unit unit1("goblin",'G',3,4,5,3);
+        Unit unit2("goblin",'G',7,7,5,3);
+        Item item1("potion",true,false,0,0,0,10);
+        Item item2("sword",false,false,10,0,1,0);
         Cont cont("chest",'C',5,5);
         cont.addItem(&item1);
         cont.addItem(&item2);
         Map map;
         map.addMapObj(&player);
-        map.addMapObj(&unit);
+        map.addMapObj(&unit1);
+        map.addMapObj(&unit2);
         map.addMapObj(&cont);
         p1->info();
         //map.draw();
@@ -26,6 +28,15 @@ namespace Rpg
             map.draw();
             player.move(&stop);
             checkMap(&map,&stop);
+            if (p1->getHp() <1 )
+            {
+                stop = false;
+            }
+            if (unit1.getHp()<1 && unit2.getHp()<1)
+            {
+                std::cout << "You win!" << std::endl;
+                stop = false;
+            }
         }
     }
 
@@ -38,7 +49,7 @@ namespace Rpg
                 if ( map->getMapObj(i)->call() == 1 )
                 {
                     Unit *unit = dynamic_cast<Unit*>(map->getMapObj(i) );
-                    fightUnit(unit,map,stop);
+                    fightUnit(unit,map);
                 }
                 if ( map->getMapObj(i)->call() == 2 )
                 {
@@ -50,37 +61,45 @@ namespace Rpg
         }
     }
 
-    void Game::fightUnit(Unit* unit, Map* map, bool* stop)
+    void Game::fightUnit(Unit* unit, Map* map)
     {
         std::cout << "Fight!" << std::endl;
-        char fKey='a';
-        while (fKey!='r')
+        char key;
+        bool stop = true;
+        while ( stop )
         {
-            unit->info();
-            std::cout << std::endl;
-            p1->info();
-            std::cout << "(A)ttack or (R)un?" << std::endl;
-            std::cin >> fKey;
-            if (fKey=='a')
+            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+            if (unit->getHp() > 0)
             {
+                unit->info();
+                std::cout << std::endl;
+                p1->info();
+                std::cin >> key;
+            }
+            else
+            {
+                std::cout << "Enemy is defeated!" << std::endl;
+                std::cin >> key;
+                map->removeMapObj(unit);
+                key = '=';
+            }
+            if (p1->getHp() <1 )
+            {
+                std::cout << "You lose!" << std::endl;
+                std::cin >> key;
+                key = '=';
+            }
+            switch (key)
+            {
+            case 'u':
                 std::cout << "Hit!" << std::endl;
                 unit->changeHp(- p1->getDmg() );
                 p1->changeHp(- unit->getDmg() );
+                break;
+            case '=':
+                stop = false;
+                break;
             }
-            if (unit->getHp() <1)
-            {
-                std::cout << "Enemy defeated! You win!" << std::endl;
-                map->removeMapObj(unit);
-                *stop = false;
-                fKey = 'r';
-            }
-            if (p1->getHp() < 1)
-            {
-                std::cout << "You lose!" << std::endl;
-                *stop = false;
-                fKey = 'r';
-            }
-            map->draw();
         }
     }
 
@@ -90,7 +109,7 @@ namespace Rpg
         bool stop = true;
         while ( stop )
         {
-            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
             if (cont->getSize()!=0)
             {
                 cont ->info();

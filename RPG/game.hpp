@@ -23,7 +23,7 @@ namespace Rpg
         }
         void startGame();
         void checkMap(Map*,bool*);
-        void fightUnit(Unit*,Map*,bool*);
+        void fightUnit(Unit*,Map*);
         void openCont(Cont*,Map*);
     };
 }

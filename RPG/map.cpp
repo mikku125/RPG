@@ -64,8 +64,8 @@ namespace Rpg
         resetMap();
         updateMap();
 
-        std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
-
+        std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+        std::cout << "wsad - move, u - use/attack, i - open inventory, = - quit game/menu/fight" << std::endl << std::endl;
         for (unsigned i=0; i<17; ++i)
         {
             std::cout << "# ";

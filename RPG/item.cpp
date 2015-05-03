@@ -13,6 +13,10 @@ namespace Rpg
         }
         else
         {
+            if (equip)
+            {
+                std::cout << " - equipped" << std::endl;
+            }
             std::cout << "Durability " << dur << " of " << maxDur << std::endl;
         }
         std::cout << "effect is: ";

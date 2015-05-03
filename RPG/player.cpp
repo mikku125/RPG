@@ -49,7 +49,7 @@ namespace Rpg
         bool stop = true;
         while (stop)
         {
-            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
             if (itemsVec.size()!=0)
             {
                 Inventory::info();
@@ -81,25 +81,45 @@ namespace Rpg
 
     void Player::useItem()
     {
-        if (getItem(cursor)->getIncHp() )
-        {
-            maxHp+=getItem(cursor)->getIncHp();
-        }
-        if (getItem(cursor)->getIncDmg() )
-        {
-            dmg+=getItem(cursor)->getIncDmg();
-        }
-        if (getItem(cursor)->getRepHp() )
-        {
-            if ( (maxHp-hp)<getItem(cursor)->getRepHp() )
-            {
-                hp+=maxHp-hp;
-            }
-            hp+=getItem(cursor)->getRepHp();
-        }
         if (getItem(cursor)->isOneUse() )
         {
+            if (getItem(cursor)->getRepHp() )
+            {
+                if ( (maxHp-hp)<getItem(cursor)->getRepHp() )
+                {
+                    hp+=maxHp-hp;
+                }
+                else
+                {
+                    hp+=getItem(cursor)->getRepHp();
+                }
+            }
             removeItem(cursor);
+        }
+        else  if (getItem(cursor)->isEquip() )
+        {
+            if (getItem(cursor)->getIncHp() )
+            {
+                maxHp-=getItem(cursor)->getIncHp();
+                hp = (hp>maxHp) ? (maxHp) : (hp);
+            }
+            if (getItem(cursor)->getIncDmg() )
+            {
+                dmg-=getItem(cursor)->getIncDmg();
+            }
+            getItem(cursor)->equipItem();
+        }
+        else
+        {
+            if (getItem(cursor)->getIncHp() )
+            {
+                maxHp+=getItem(cursor)->getIncHp();
+            }
+            if (getItem(cursor)->getIncDmg() )
+            {
+                dmg+=getItem(cursor)->getIncDmg();
+            }
+            getItem(cursor)->equipItem();
         }
     }
 }

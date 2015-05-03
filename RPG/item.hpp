@@ -13,13 +13,14 @@ namespace Rpg
     {
     protected:
         bool oneUse;
+        bool equip;
         int dur;
         int maxDur;
 
     public:
-        Item(std::string str, bool o=true, int d = 0,
+        Item(std::string str, bool o=true, bool e=false, int d = 0,
              int hp=0, int dmg=0, int rhp=0)
-        : Object(str), Effect(hp,dmg,rhp), oneUse(o), dur(d), maxDur(d)
+        : Object(str), Effect(hp,dmg,rhp), oneUse(o), equip(e), dur(d), maxDur(d)
         {}
 
         virtual void info() const;
@@ -27,6 +28,16 @@ namespace Rpg
         bool& isOneUse()
         {
             return oneUse;
+        }
+
+        bool& isEquip()
+        {
+            return equip;
+        }
+
+        void equipItem()
+        {
+            equip = !equip;
         }
 
         virtual ~Item(){};
