@@ -5,6 +5,7 @@
 
 #include "object.hpp"
 #include "effect.hpp"
+#include "unit.hpp"
 
 namespace Rpg
 {
@@ -22,8 +23,6 @@ namespace Rpg
         {}
 
         virtual void info() const;
-
-        virtual void useItem();
 
         bool& isOneUse()
         {

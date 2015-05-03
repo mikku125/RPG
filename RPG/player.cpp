@@ -45,24 +45,61 @@ namespace Rpg
 
     void Player::openInv()
     {
-        Inventory::info();
-        unsigned i;
-        std::cout << "Use item? 0-no, 1-first... \n";
-        std::cin >> i;
-        if (i!=0)
+        char key;
+        bool stop = true;
+        while (stop)
         {
-            if (inv[i-1]->isOneUse() )
+            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+            if (itemsVec.size()!=0)
             {
-                inv[i-1]->info();
-                inv[i-1]->applyEffects(this);
-                removeItem(i-1);
+                Inventory::info();
+                std::cin>>key;
             }
             else
             {
-                inv[i-1]->info();
-                inv[i-1]->applyEffects(this);
+                std::cout << "Inventory is empty" << std::endl;
+                std::cin >> key;
+                key = '=';
             }
+            switch (key)
+            {
+            case 'w':
+                moveCursorUp();
+                break;
+            case 's':
+                moveCursorDown();
+                break;
+            case 'u':
+                useItem();
+                break;
+            case '=':
+                stop = false;
+                break;
+            }
+        }
+    }
 
+    void Player::useItem()
+    {
+        if (getItem(cursor)->getIncHp() )
+        {
+            maxHp+=getItem(cursor)->getIncHp();
+        }
+        if (getItem(cursor)->getIncDmg() )
+        {
+            dmg+=getItem(cursor)->getIncDmg();
+        }
+        if (getItem(cursor)->getRepHp() )
+        {
+            if ( (maxHp-hp)<getItem(cursor)->getRepHp() )
+            {
+                hp+=maxHp-hp;
+            }
+            hp+=getItem(cursor)->getRepHp();
+        }
+        if (getItem(cursor)->isOneUse() )
+        {
+            removeItem(cursor);
         }
     }
 }

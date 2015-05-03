@@ -1,8 +1,6 @@
 #ifndef EFFECT_HPP
 #define EFFECT_HPP
 
-#include "unit.hpp"
-
 namespace Rpg
 {
     class Effect
@@ -17,9 +15,22 @@ namespace Rpg
         : incHp(h), incDmg(d), repHp(rh)
         {}
 
-        virtual void info() const;
+        int& getIncHp()
+        {
+            return incHp;
+        }
 
-        void applyEffects(Unit*);
+        int& getIncDmg()
+        {
+            return incDmg;
+        }
+
+        int& getRepHp()
+        {
+            return repHp;
+        }
+
+        virtual void info() const;
 
         virtual ~Effect(){};
     };

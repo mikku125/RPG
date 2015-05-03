@@ -2,8 +2,6 @@
 #define MAP_HPP
 
 #include "mapobject.hpp"
-#include "unit.hpp"
-#include "player.hpp"
 
 #include <vector>
 

@@ -6,36 +6,60 @@ namespace Rpg
 {
     void Inventory::info() const
     {
-        for (unsigned i=0; i<inv.size(); ++i)
+        for (unsigned i=0; i<itemsVec.size(); ++i)
         {
-            inv[i]->info();
+            if (i == cursor)
+            {
+                std::cout << ">>> ";
+            }
+            itemsVec[i]->info();
             std::cout << std::endl;
         }
     }
 
     Item* Inventory::getItem(const unsigned& i)
     {
-        return inv[i];
+        return itemsVec[i];
     }
 
     void Inventory::addItem(Item* item)
     {
-        inv.push_back(item);
+        itemsVec.push_back(item);
     }
 
 
     void Inventory::removeItem(const unsigned& i)
     {
-        for (unsigned j=i; j<inv.size()-1; ++j)
+        for (unsigned j=i; j<itemsVec.size()-1; ++j)
         {
-            inv[j]=inv[j+1];
+            itemsVec[j]=itemsVec[j+1];
         }
-        inv.pop_back();
-    }
-    void Inventory::takeItem(const unsigned& i, Inventory* inv1)
-    {
-        inv1->addItem(inv[i] );
-        removeItem(i);
+        itemsVec.pop_back();
+        if (!(cursor<itemsVec.size() ) )
+        {
+            cursor = itemsVec.size()-1;
+        }
     }
 
+    void Inventory::giveItem(Inventory* inv)
+    {
+        inv->addItem(itemsVec[cursor] );
+        removeItem(cursor);
+    }
+
+    void Inventory::moveCursorUp()
+    {
+        if (cursor>0)
+        {
+            --cursor;
+        }
+    }
+
+    void Inventory::moveCursorDown()
+    {
+        if (cursor<itemsVec.size()-1)
+        {
+            ++cursor;
+        }
+    }
 }

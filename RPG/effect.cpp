@@ -19,24 +19,4 @@ namespace Rpg
             std::cout << "replenishes " << repHp << " hp" << std::endl;
         }
     }
-
-    void Effect::applyEffects(Unit* unit)
-    {
-        if (incHp)
-        {
-            unit->changeMaxHp(incHp);
-        }
-        if (incDmg)
-        {
-            unit->changeDmg(incDmg);
-        }
-        if (repHp)
-        {
-            if ( (unit->getMaxHp() - unit->getHp() )<repHp )
-            {
-                repHp = (unit->getMaxHp() - unit->getHp() );
-            }
-            unit->changeHp(repHp);
-        }
-    }
 }

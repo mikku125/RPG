@@ -19,8 +19,4 @@ namespace Rpg
         Effect::info();
     }
 
-    void Item::useItem()
-    {
-
-    }
 }

@@ -86,22 +86,38 @@ namespace Rpg
 
     void Game::openCont(Cont* cont, Map* map)
     {
-        unsigned i=1;
-        std::cout << "Chest!" << std::endl;
-        while ( (cont->getSize()>0) && (i!=0) )
+        char key;
+        bool stop = true;
+        while ( stop )
         {
-            cont ->info();
-            std::cout << "Take items? 0-no, 1-first..." << std::endl;
-            std::cin >> i;
-            if (i!=0)
+            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+            if (cont->getSize()!=0)
             {
-                cont->takeItem(i-1,p1);
+                cont ->info();
+                std::cin >> key;
             }
-            map->draw();
-        }
-        if (cont->getSize()==0)
-        {
-            map->removeMapObj(cont);
+            else
+            {
+                std::cout << "Chest is empty!" << std::endl;
+                std::cin >> key;
+                map->removeMapObj(cont);
+                key = '=';
+            }
+            switch (key)
+            {
+            case 'w':
+                cont->moveCursorUp();
+                break;
+            case 's':
+                cont->moveCursorDown();
+                break;
+            case 'u':
+                cont->giveItem(p1);
+                break;
+            case '=':
+                stop = false;
+                break;
+            }
         }
     }
 }

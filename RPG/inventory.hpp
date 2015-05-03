@@ -10,20 +10,25 @@ namespace Rpg
     class Inventory
     {
     protected:
-        std::vector<Item*> inv;
+        std::vector<Item*> itemsVec;
+        unsigned cursor;
 
     public:
         Inventory()
-        {}
+        {
+            cursor = 0;
+        }
 
         virtual void info() const;
         Item* getItem(const unsigned&);
         void addItem(Item*);
         void removeItem(const unsigned&);
-        void takeItem(const unsigned&,Inventory*);
+        void giveItem(Inventory*);
+        void moveCursorUp();
+        void moveCursorDown();
         unsigned getSize() const
         {
-            return inv.size();
+            return itemsVec.size();
         }
     };
 }
