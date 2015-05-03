@@ -22,11 +22,15 @@ namespace Rpg
         return itemsVec[i];
     }
 
+    Item* Inventory::getItem()
+    {
+        return itemsVec[cursor];
+    }
+
     void Inventory::addItem(Item* item)
     {
         itemsVec.push_back(item);
     }
-
 
     void Inventory::removeItem(const unsigned& i)
     {
@@ -41,10 +45,29 @@ namespace Rpg
         }
     }
 
+    void Inventory::removeItem()
+    {
+        for (unsigned j=cursor; j<itemsVec.size()-1; ++j)
+        {
+            itemsVec[j]=itemsVec[j+1];
+        }
+        itemsVec.pop_back();
+        if (!(cursor<itemsVec.size() ) )
+        {
+            cursor = itemsVec.size()-1;
+        }
+    }
+
     void Inventory::giveItem(Inventory* inv)
     {
         inv->addItem(itemsVec[cursor] );
         removeItem(cursor);
+    }
+
+    void Inventory::takeItem(Inventory* inv)
+    {
+        addItem(inv->getItem() );
+        inv->removeItem();
     }
 
     void Inventory::moveCursorUp()

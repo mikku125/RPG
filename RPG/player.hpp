@@ -3,6 +3,7 @@
 
 #include "unit.hpp"
 #include "inventory.hpp"
+#include "cont.hpp"
 #include "map.hpp"
 
 namespace Rpg
@@ -20,6 +21,8 @@ namespace Rpg
         virtual unsigned call() const;
         void move(bool*);
         void openInv();
+        void openCont(Cont*,Map*);
+        void fightUnit(Unit*,Map*);
     };
 }
 #endif // PLAYER_HPP

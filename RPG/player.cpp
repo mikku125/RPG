@@ -18,16 +18,16 @@ namespace Rpg
         switch (key)
         {
         case 'w':
-            --xpos;
+            moveW();
             break;
         case 's':
-            ++xpos;
+            moveS();
             break;
         case 'a':
-            --ypos;
+            moveA();
             break;
         case 'd':
-            ++ypos;
+            moveD();
             break;
         case 'i':
             openInv();
@@ -120,6 +120,87 @@ namespace Rpg
                 dmg+=getItem(cursor)->getIncDmg();
             }
             getItem(cursor)->equipItem();
+        }
+    }
+
+    void Player::openCont(Cont* cont, Map* map)
+    {
+        char key;
+        bool stop = true;
+        while ( stop )
+        {
+            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+            if (cont->getSize()!=0)
+            {
+                cont ->info();
+                std::cin >> key;
+            }
+            else
+            {
+                std::cout << "Chest is empty!" << std::endl;
+                std::cin >> key;
+                map->removeMapObj(cont);
+                key = '=';
+            }
+            switch (key)
+            {
+            case 'w':
+                cont->moveCursorUp();
+                break;
+            case 's':
+                cont->moveCursorDown();
+                break;
+            case 'u':
+                takeItem(cont);
+                break;
+            case '=':
+                stop = false;
+                break;
+            }
+        }
+    }
+
+    void Player::fightUnit(Unit* unit, Map* map)
+    {
+        std::cout << "Fight!" << std::endl;
+        char key;
+        bool stop = true;
+        while ( stop )
+        {
+            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
+            if (getHp() <1 )
+            {
+                key = '=';
+            }
+            else if (unit->getHp() > 0)
+            {
+                unit->info();
+                std::cout << std::endl;
+                Player::info();
+                std::cin >> key;
+            }
+            else
+            {
+                std::cout << "Enemy is defeated!" << std::endl;
+                std::cin >> key;
+                map->removeMapObj(unit);
+                key = '=';
+            }
+            switch (key)
+            {
+            case 'u':
+                std::cout << "Hit!" << std::endl;
+                unit->changeHp(- dmg );
+                changeHp(- unit->getDmg() );
+                break;
+            case '=':
+                if (unit->getHp() > 0)
+                {
+                    changeHp(- unit->getDmg() );
+                }
+                stop = false;
+                break;
+            }
         }
     }
 }

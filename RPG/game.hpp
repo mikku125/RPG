@@ -23,8 +23,6 @@ namespace Rpg
         }
         void startGame();
         void checkMap(Map*,bool*);
-        void fightUnit(Unit*,Map*);
-        void openCont(Cont*,Map*);
     };
 }
 #endif // GAME_HPP

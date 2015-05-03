@@ -21,9 +21,12 @@ namespace Rpg
 
         virtual void info() const;
         Item* getItem(const unsigned&);
+        Item* getItem();
         void addItem(Item*);
         void removeItem(const unsigned&);
+        void removeItem();
         void giveItem(Inventory*);
+        void takeItem(Inventory*);
         void moveCursorUp();
         void moveCursorDown();
         unsigned getSize() const

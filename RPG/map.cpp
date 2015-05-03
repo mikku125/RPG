@@ -65,12 +65,12 @@ namespace Rpg
         updateMap();
 
         std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
-        std::cout << "wsad - move, u - use/attack, i - open inventory, = - quit game/menu/fight" << std::endl << std::endl;
+        std::cout << "wsad - move, u - use/attack/equip, i - open inventory, = - quit game/menu/fight" << std::endl << std::endl;
         for (unsigned i=0; i<17; ++i)
         {
             std::cout << "# ";
         }
-        std::cout << '\n';
+        std::cout << std::endl;
 
         for (unsigned i=0; i<15; ++i)
         {
@@ -86,6 +86,7 @@ namespace Rpg
         {
             std::cout << "# ";
         }
-        std::cout << '\n';
+        std::cout << std::endl;
+        getMapObj(0)->info();
     }
 }

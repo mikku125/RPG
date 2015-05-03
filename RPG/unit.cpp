@@ -1,5 +1,7 @@
 #include "unit.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 namespace Rpg
 {
@@ -12,22 +14,55 @@ namespace Rpg
 
     void Unit::moveW()
     {
-        --xpos;
+        if (xpos>0)
+        {
+            --xpos;
+        }
     }
 
     void Unit::moveS()
     {
-        ++xpos;
+        if (xpos<14)
+        {
+            ++xpos;
+        }
     }
 
     void Unit::moveA()
     {
-        --ypos;
+        if (ypos>0)
+        {
+            --ypos;
+        }
     }
 
     void Unit::moveD()
     {
-        ++ypos;
+        if (ypos<14)
+        {
+            ++ypos;
+        }
+    }
+
+    void Unit::move()
+    {
+        srand(time(NULL) );
+        unsigned i = rand()%4;
+        switch (i)
+        {
+        case 0:
+            moveW();
+            break;
+        case 1:
+            moveS();
+            break;
+        case 2:
+            moveA();
+            break;
+        case 3:
+            moveD();
+            break;
+        }
     }
 
     unsigned Unit::call() const

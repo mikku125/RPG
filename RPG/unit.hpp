@@ -20,6 +20,7 @@ namespace Rpg
         void moveS();
         void moveA();
         void moveD();
+        virtual void move();
 
         int& getHp()
         {
