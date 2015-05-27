@@ -6,62 +6,37 @@ namespace Rpg
 {
     void Inventory::info() const
     {
-        for (unsigned i=0; i<itemsVec.size(); ++i)
+        for (std::vector<Item*>::const_iterator i = itemsVec.begin(); i != itemsVec.end(); ++i)
         {
-            if (i == cursor)
+            if ( *i == *cursor )
             {
                 std::cout << ">>> ";
             }
-            itemsVec[i]->info();
+            (*i)->info();
             std::cout << std::endl;
         }
     }
 
-    Item* Inventory::getItem(const unsigned& i)
-    {
-        return itemsVec[i];
-    }
-
     Item* Inventory::getItem()
     {
-        return itemsVec[cursor];
+        return *cursor;
     }
 
     void Inventory::addItem(Item* item)
     {
         itemsVec.push_back(item);
-    }
-
-    void Inventory::removeItem(const unsigned& i)
-    {
-        for (unsigned j=i; j<itemsVec.size()-1; ++j)
-        {
-            itemsVec[j]=itemsVec[j+1];
-        }
-        itemsVec.pop_back();
-        if (!(cursor<itemsVec.size() ) )
-        {
-            cursor = itemsVec.size()-1;
-        }
+        cursor = itemsVec.begin();
     }
 
     void Inventory::removeItem()
     {
-        for (unsigned j=cursor; j<itemsVec.size()-1; ++j)
-        {
-            itemsVec[j]=itemsVec[j+1];
-        }
-        itemsVec.pop_back();
-        if (!(cursor<itemsVec.size() ) )
-        {
-            cursor = itemsVec.size()-1;
-        }
+        itemsVec.erase(cursor);
     }
 
     void Inventory::giveItem(Inventory* inv)
     {
-        inv->addItem(itemsVec[cursor] );
-        removeItem(cursor);
+        inv->addItem(*cursor);
+        removeItem();
     }
 
     void Inventory::takeItem(Inventory* inv)
@@ -72,7 +47,7 @@ namespace Rpg
 
     void Inventory::moveCursorUp()
     {
-        if (cursor>0)
+        if (cursor != itemsVec.begin() )
         {
             --cursor;
         }
@@ -80,7 +55,7 @@ namespace Rpg
 
     void Inventory::moveCursorDown()
     {
-        if (cursor<itemsVec.size()-1)
+        if (cursor != itemsVec.end() - 1 )
         {
             ++cursor;
         }

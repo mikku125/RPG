@@ -11,21 +11,21 @@ namespace Rpg
         int repHp;
 
     public:
-        Effect(int h=0, int d=0, int rh=0)
+        Effect(int h = 0, int d = 0, int rh = 0)
         : incHp(h), incDmg(d), repHp(rh)
         {}
 
-        int& getIncHp()
+        int getIncHp() const
         {
             return incHp;
         }
 
-        int& getIncDmg()
+        int getIncDmg() const
         {
             return incDmg;
         }
 
-        int& getRepHp()
+        int getRepHp() const
         {
             return repHp;
         }

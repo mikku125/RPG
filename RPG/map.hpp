@@ -16,23 +16,23 @@ namespace Rpg
     public:
         Map()
         {
-            for (unsigned i=0; i<15; ++i)
+            for (unsigned i = 0; i < 15; ++i)
             {
-                for (unsigned j=0; j<15; ++j)
+                for (unsigned j = 0; j < 15; ++j)
                 {
-                    mp[i][j]=' ';
+                    mp[i][j] = ' ';
                 }
             }
         }
 
         unsigned findMapObj(MapObject*);
 
-        MapObject* getMapObj(const unsigned& i)
+        MapObject* getMapObj(unsigned i)
         {
             return mapObjVec[i];
         }
 
-        void removeMapObj(const unsigned&);
+        void removeMapObj(unsigned);
         void removeMapObj(MapObject*);
 
         unsigned getSize()

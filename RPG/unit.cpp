@@ -14,7 +14,7 @@ namespace Rpg
 
     void Unit::moveW()
     {
-        if (xpos>0)
+        if (xpos > 0)
         {
             --xpos;
         }
@@ -22,7 +22,7 @@ namespace Rpg
 
     void Unit::moveS()
     {
-        if (xpos<14)
+        if (xpos < 14)
         {
             ++xpos;
         }
@@ -30,7 +30,7 @@ namespace Rpg
 
     void Unit::moveA()
     {
-        if (ypos>0)
+        if (ypos > 0)
         {
             --ypos;
         }
@@ -38,7 +38,7 @@ namespace Rpg
 
     void Unit::moveD()
     {
-        if (ypos<14)
+        if (ypos < 14)
         {
             ++ypos;
         }
@@ -47,7 +47,7 @@ namespace Rpg
     void Unit::move()
     {
         srand(time(NULL) );
-        unsigned i = rand()%4;
+        unsigned i = rand() % 4;
         switch (i)
         {
         case 0:

@@ -12,7 +12,7 @@ namespace Rpg
         int maxHp;
         int dmg;
     public:
-        Unit(std::string name="name", char s='X', unsigned x=0, unsigned y=0, int h=10, int d=1)
+        Unit(const std::string& name = "name", char s = 'X', unsigned x = 0, unsigned y = 0, int h = 10, int d = 1)
         : MapObject(name,s,x,y) , hp(h), maxHp(h), dmg(d) {}
 
         virtual void info() const;
@@ -22,34 +22,34 @@ namespace Rpg
         void moveD();
         virtual void move();
 
-        int& getHp()
+        int getHp() const
         {
             return hp;
         }
 
-        int& getMaxHp()
+        int getMaxHp() const
         {
             return maxHp;
         }
 
-        int& getDmg()
+        int getDmg() const
         {
             return dmg;
         }
 
-        void changeHp(const unsigned& i)
+        void changeHp(unsigned i)
         {
-            hp+=i;
+            hp += i;
         }
 
-        void changeMaxHp(const unsigned& i)
+        void changeMaxHp(unsigned i)
         {
-            maxHp+=i;
+            maxHp += i;
         }
 
-        void changeDmg(const unsigned& i)
+        void changeDmg(unsigned i)
         {
-            dmg+=i;
+            dmg += i;
         }
 
         virtual unsigned call() const;

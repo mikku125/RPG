@@ -9,7 +9,7 @@ namespace Rpg
     {
     protected:
         std::string name;
-        Object(std::string name="name")
+        Object(const std::string& name = "name")
         : name(name) {}
 
     public:

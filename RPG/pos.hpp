@@ -10,39 +10,35 @@ namespace Rpg
         unsigned ypos;
 
     public:
-        Pos(unsigned x=0, unsigned y=0)
+        Pos(unsigned x = 0, unsigned y = 0)
         : xpos(x), ypos(y) {}
 
-        Pos& getPos()
+        Pos getPos()
         {
             return *this;
         }
 
-        unsigned& getXpos()
+        unsigned getX() const
         {
             return xpos;
         }
 
-        unsigned& getYpos()
+        unsigned getY() const
         {
             return ypos;
         }
 
-        friend bool operator==(const Pos&, const Pos&);
-
-        friend bool operator!=(const Pos&, const Pos&);
-
         ~Pos() {}
     };
 
-    inline bool operator==(const Pos& p1, const Pos& p2)
+    inline bool operator ==(const Pos& p1, const Pos& p2)
     {
-        return ( (p1.xpos==p2.xpos) && (p1.ypos==p2.ypos) );
+        return ( (p1.getX() == p2.getX() ) && (p1.getY() == p2.getY() ) );
     }
 
-    inline bool operator!=(const Pos& p1, const Pos& p2)
+    inline bool operator !=(const Pos& p1, const Pos& p2)
     {
-        return !(p1==p2);
+        return !(p1 == p2);
     }
 }
 #endif // POS_HPP

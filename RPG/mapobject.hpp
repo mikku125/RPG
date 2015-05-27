@@ -11,17 +11,17 @@ namespace Rpg
     protected:
         char sym;
     public:
-        MapObject(std::string name="name", char s='X', unsigned x=0, unsigned y=0)
+        MapObject(const std::string& name = "name", char s = 'X', unsigned x = 0, unsigned y = 0)
         : Object(name), Pos(x,y), sym(s) {}
 
-        char& getSym()
+        char getSym()
         {
             return sym;
         }
 
-        void setSym(const char&);
+        void setSym(char);
         virtual void info() const;
-        virtual unsigned call() const=0;
+        virtual unsigned call() const = 0;
         ~MapObject() {}
     };
 }

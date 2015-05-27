@@ -9,7 +9,7 @@ namespace Rpg
         std::cout << "This is " << name << std::endl;
     }
 
-    void MapObject::setSym(const char& c)
+    void MapObject::setSym(char c)
     {
         sym = c;
     }

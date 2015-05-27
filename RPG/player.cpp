@@ -81,45 +81,45 @@ namespace Rpg
 
     void Player::useItem()
     {
-        if (getItem(cursor)->isOneUse() )
+        if (getItem()->isOneUse() )
         {
-            if (getItem(cursor)->getRepHp() )
+            if (getItem()->getRepHp() )
             {
-                if ( (maxHp-hp)<getItem(cursor)->getRepHp() )
+                if ( (maxHp-hp)<getItem()->getRepHp() )
                 {
                     hp+=maxHp-hp;
                 }
                 else
                 {
-                    hp+=getItem(cursor)->getRepHp();
+                    hp+=getItem()->getRepHp();
                 }
             }
-            removeItem(cursor);
+            removeItem();
         }
-        else  if (getItem(cursor)->isEquip() )
+        else  if (getItem()->isEquip() )
         {
-            if (getItem(cursor)->getIncHp() )
+            if (getItem()->getIncHp() )
             {
-                maxHp-=getItem(cursor)->getIncHp();
+                maxHp-=getItem()->getIncHp();
                 hp = (hp>maxHp) ? (maxHp) : (hp);
             }
-            if (getItem(cursor)->getIncDmg() )
+            if (getItem()->getIncDmg() )
             {
-                dmg-=getItem(cursor)->getIncDmg();
+                dmg-=getItem()->getIncDmg();
             }
-            getItem(cursor)->equipItem();
+            getItem()->equipItem();
         }
         else
         {
-            if (getItem(cursor)->getIncHp() )
+            if (getItem()->getIncHp() )
             {
-                maxHp+=getItem(cursor)->getIncHp();
+                maxHp+=getItem()->getIncHp();
             }
-            if (getItem(cursor)->getIncDmg() )
+            if (getItem()->getIncDmg() )
             {
-                dmg+=getItem(cursor)->getIncDmg();
+                dmg+=getItem()->getIncDmg();
             }
-            getItem(cursor)->equipItem();
+            getItem()->equipItem();
         }
     }
 
@@ -132,7 +132,7 @@ namespace Rpg
             std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
             if (cont->getSize()!=0)
             {
-                cont ->info();
+                cont->info();
                 std::cin >> key;
             }
             else
@@ -154,50 +154,6 @@ namespace Rpg
                 takeItem(cont);
                 break;
             case '=':
-                stop = false;
-                break;
-            }
-        }
-    }
-
-    void Player::fightUnit(Unit* unit, Map* map)
-    {
-        std::cout << "Fight!" << std::endl;
-        char key;
-        bool stop = true;
-        while ( stop )
-        {
-            std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
-            if (getHp() <1 )
-            {
-                key = '=';
-            }
-            else if (unit->getHp() > 0)
-            {
-                unit->info();
-                std::cout << std::endl;
-                Player::info();
-                std::cin >> key;
-            }
-            else
-            {
-                std::cout << "Enemy is defeated!" << std::endl;
-                std::cin >> key;
-                map->removeMapObj(unit);
-                key = '=';
-            }
-            switch (key)
-            {
-            case 'u':
-                std::cout << "Hit!" << std::endl;
-                unit->changeHp(- dmg );
-                changeHp(- unit->getDmg() );
-                break;
-            case '=':
-                if (unit->getHp() > 0)
-                {
-                    changeHp(- unit->getDmg() );
-                }
                 stop = false;
                 break;
             }

@@ -18,19 +18,19 @@ namespace Rpg
         int maxDur;
 
     public:
-        Item(std::string str, bool o=true, bool e=false, int d = 0,
-             int hp=0, int dmg=0, int rhp=0)
+        Item(const std::string& str = "noname", bool o = true, bool e = false, int d = 0,
+             int hp = 0, int dmg = 0, int rhp = 0)
         : Object(str), Effect(hp,dmg,rhp), oneUse(o), equip(e), dur(d), maxDur(d)
         {}
 
         virtual void info() const;
 
-        bool& isOneUse()
+        bool isOneUse()
         {
             return oneUse;
         }
 
-        bool& isEquip()
+        bool isEquip()
         {
             return equip;
         }

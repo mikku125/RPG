@@ -6,7 +6,7 @@ namespace Rpg
 {
     unsigned Map::findMapObj(MapObject* mapObj)
     {
-        for (unsigned i=0; i<mapObjVec.size(); ++i)
+        for (unsigned i = 0; i < mapObjVec.size(); ++i)
         {
             if (mapObj == mapObjVec[i] )
             {
@@ -21,9 +21,9 @@ namespace Rpg
         mapObjVec.push_back(mapObj);
     }
 
-    void Map::removeMapObj(const unsigned& i)
+    void Map::removeMapObj(unsigned i)
     {
-        for (unsigned j=i; j<mapObjVec.size()-1; ++j)
+        for (unsigned j = i; j < mapObjVec.size()-1; ++j)
         {
             mapObjVec[j] = mapObjVec[j+1];
         }
@@ -33,7 +33,7 @@ namespace Rpg
     void Map::removeMapObj(MapObject* mapObj)
     {
         unsigned i = findMapObj(mapObj);
-        for (unsigned j=i; j<mapObjVec.size()-1; ++j)
+        for (unsigned j = i; j < mapObjVec.size()-1; ++j)
         {
             mapObjVec[j] = mapObjVec[j+1];
         }
@@ -42,9 +42,9 @@ namespace Rpg
 
     void Map::resetMap()
     {
-        for (unsigned i=0; i<15; ++i)
+        for (unsigned i = 0; i < 15; ++i)
         {
-            for (unsigned j=0; j<15; ++j)
+            for (unsigned j = 0; j < 15; ++j)
             {
                 mp[i][j] = ' ';
             }
@@ -53,9 +53,9 @@ namespace Rpg
 
     void Map::updateMap()
     {
-        for (unsigned i=0; i<mapObjVec.size(); ++i)
+        for (unsigned i = 0; i < mapObjVec.size(); ++i)
         {
-            mp[mapObjVec[i]->getXpos() ][mapObjVec[i]->getYpos() ] = mapObjVec[i]->getSym();
+            mp[mapObjVec[i]->getX() ][mapObjVec[i]->getY() ] = mapObjVec[i]->getSym();
         }
     }
 
@@ -66,23 +66,23 @@ namespace Rpg
 
         std::cout << "\n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n \n\n\n\n\n";
         std::cout << "wsad - move, u - use/attack/equip, i - open inventory, = - quit game/menu/fight" << std::endl << std::endl;
-        for (unsigned i=0; i<17; ++i)
+        for (unsigned i = 0; i < 17; ++i)
         {
             std::cout << "# ";
         }
         std::cout << std::endl;
 
-        for (unsigned i=0; i<15; ++i)
+        for (unsigned i = 0; i < 15; ++i)
         {
             std::cout << "# ";
-            for (unsigned j=0; j<15; ++j)
+            for (unsigned j = 0; j < 15; ++j)
             {
                 std::cout << mp[i][j] << ' ';
             }
             std::cout <<"# \n";
         }
 
-        for (unsigned i=0; i<17; ++i)
+        for (unsigned i = 0; i < 17; ++i)
         {
             std::cout << "# ";
         }

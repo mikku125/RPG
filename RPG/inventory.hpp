@@ -2,6 +2,7 @@
 #define INVENTORY_HPP
 
 #include <vector>
+#include <iostream>
 
 #include "item.hpp"
 
@@ -11,19 +12,15 @@ namespace Rpg
     {
     protected:
         std::vector<Item*> itemsVec;
-        unsigned cursor;
+        std::vector<Item*>::iterator cursor;
 
     public:
         Inventory()
-        {
-            cursor = 0;
-        }
+        {}
 
         virtual void info() const;
-        Item* getItem(const unsigned&);
         Item* getItem();
         void addItem(Item*);
-        void removeItem(const unsigned&);
         void removeItem();
         void giveItem(Inventory*);
         void takeItem(Inventory*);

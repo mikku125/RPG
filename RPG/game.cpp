@@ -29,15 +29,14 @@ namespace Rpg
         {
             map.draw();
             unit3.move();
-            checkMap(&map,&stop);
             player.move(&stop);
             checkMap(&map,&stop);
-            if (p1->getHp() <1 )
+            if (p1->getHp() < 1 )
             {
                 std::cout << "You lose!" << std::endl;
                 stop = false;
             }
-            if (unit1.getHp()<1 && unit2.getHp()<1)
+            if (unit1.getHp() < 1 && unit2.getHp() < 1)
             {
                 std::cout << "You win!" << std::endl;
                 stop = false;
@@ -47,21 +46,21 @@ namespace Rpg
 
     void Game::checkMap(Map* map, bool* stop)
     {
-        for (unsigned i=1; i<map->getSize(); ++i)
+        for (unsigned i = 1; i < map->getSize(); ++i)
         {
             if ( map->getMapObj(i)->getPos() == p1->getPos() )
             {
                 if ( map->getMapObj(i)->call() == 1 )
                 {
                     Unit *unit = dynamic_cast<Unit*>(map->getMapObj(i) );
-                    p1->fightUnit(unit,map);
+                    Fight fight;
+                    fight.startFight(p1,unit,map);
                 }
                 if ( map->getMapObj(i)->call() == 2 )
                 {
                     Cont *cont = dynamic_cast<Cont*>(map->getMapObj(i) );
                     p1->openCont(cont,map);
                 }
-
             }
         }
     }
